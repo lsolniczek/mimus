@@ -18,16 +18,12 @@ func (h *serveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewServeHandler(stub models.APIStub) (http.Handler, error) {
-	var body map[string]interface{}
-	if err := json.Unmarshal([]byte(stub.Response.BodyJSON), &body); err != nil {
-		return nil, err
-	}
 	serveImp := func(w http.ResponseWriter, r *http.Request) {
 		for k, v := range stub.Response.Headers {
 			w.Header().Set(k, v)
 		}
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(body)
+		json.NewEncoder(w).Encode(stub.Response.BodyJSON)
 	}
 	return &serveHandler{serveImp}, nil
 }
