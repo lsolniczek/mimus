@@ -1,7 +1,13 @@
 package main
 
-import m "github.com/lsolniczek/api-mock/api-mock-main"
+import (
+	"log"
+
+	m "github.com/lsolniczek/api-mock/api-mock-main"
+)
 
 func main() {
-	m.Run().Start()
+	if err := m.Run().Start(); err != nil {
+		log.Fatalln(err)
+	}
 }

@@ -1,5 +1,5 @@
 package workmode
 
 type WorkMode interface {
-	Start()
+	Start() error
 }

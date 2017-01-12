@@ -18,8 +18,8 @@ import (
 
 type Server AppConfig
 
-func (s *Server) Start() {
-	log.Fatalln(s.runServer())
+func (s *Server) Start() error {
+	return s.runServer()
 }
 
 func (s *Server) runServer() error {

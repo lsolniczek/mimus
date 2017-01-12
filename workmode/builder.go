@@ -3,7 +3,6 @@ package workmode
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 
@@ -12,8 +11,8 @@ import (
 
 type Builder AppConfig
 
-func (b *Builder) Start() {
-	log.Fatalln(b.createNewProject())
+func (b *Builder) Start() error {
+	return b.createNewProject()
 }
 
 func (b *Builder) createNewProject() error {
