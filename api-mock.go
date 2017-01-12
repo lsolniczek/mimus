@@ -3,11 +3,11 @@ package main
 import (
 	"log"
 
-	m "github.com/lsolniczek/api-mock/api-mock-main"
+	"github.com/lsolniczek/api-mock/setup"
 )
 
 func main() {
-	if err := m.Run().Start(); err != nil {
+	if err := setup.Run().Start(); err != nil {
 		log.Fatalln(err)
 	}
 }

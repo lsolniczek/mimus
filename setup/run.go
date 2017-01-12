@@ -1,4 +1,4 @@
-package apimockmain
+package setup
 
 import (
 	"flag"
