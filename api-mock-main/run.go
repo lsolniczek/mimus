@@ -7,7 +7,7 @@ import (
 	"os/user"
 	"path/filepath"
 
-	i "github.com/lsolniczek/api-mock/instance"
+	"github.com/lsolniczek/api-mock/workmode"
 )
 
 var fs = flag.NewFlagSet("api mock set", flag.ExitOnError)
@@ -17,7 +17,7 @@ func init() {
 	fs.StringVar(&projectsFilePath, "path", apiMockConfigDir(), "Set custom path to project config directory")
 }
 
-func Run() i.Instance {
+func Run() workmode.WorkMode {
 	cmd := os.Args[1]     // get command (run or new)
 	name := os.Args[2]    // get command argument (project name)
 	fs.Parse(os.Args[3:]) // parse arguments from 3th place to check flags
@@ -32,34 +32,33 @@ func Run() i.Instance {
 	}
 
 	// create create config directory if doesn't exist
-	if err := createConfDirectory(projectsFilePath); err != nil {
-		log.Fatalln(err)
-	}
+	createConfDirectory(projectsFilePath)
 
 	// set AppConfig
-	config := i.AppConfig{
+	config := workmode.AppConfig{
 		ProjectName:      name,
 		ProjectsFilePath: projectsFilePath,
 	}
 	if cmd == "new" {
-		return i.NewBuilder(config)
+		b := workmode.Builder(config)
+		return &b
 	}
 	if cmd == "run" {
-		return i.NewServer(config)
+		s := workmode.Server(config)
+		return &s
 	}
 	return nil
 }
 
-func createConfDirectory(path string) error {
+func createConfDirectory(path string) {
 	_, err := os.Stat(path)
 	if err != nil {
 		if os.IsNotExist(err) {
 			os.Mkdir(path, 0777)
 		} else {
-			return err
+			log.Fatalln(err)
 		}
 	}
-	return nil
 }
 
 func apiMockConfigDir() string {
@@ -67,7 +66,7 @@ func apiMockConfigDir() string {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	return usr.HomeDir + string(filepath.Separator) + "apimock-config"
+	return filepath.Join(usr.HomeDir, "apimock-config")
 }
 
 // application configurable parameters

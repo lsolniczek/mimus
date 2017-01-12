@@ -1,8 +1,8 @@
-package fileUtil
+package fileutil
 
 import "io/ioutil"
 
-func ProjectExist(path string, name string) bool {
+func ProjectExists(path string, name string) bool {
 	for _, pn := range projectsList(path) {
 		if pn == name {
 			return true
