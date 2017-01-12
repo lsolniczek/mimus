@@ -3,9 +3,7 @@ package workmode
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"path"
 	"path/filepath"
@@ -60,7 +58,6 @@ func (s *Server) buildServer(requestNames []string) error {
 	for _, reqName := range requestNames {
 		path := filepath.Join(s.projectPath(), reqName)
 		apiStub, err := apiStubFromTemplateFile(path)
-		fmt.Println(apiStub)
 		if err != nil {
 			return err
 		}

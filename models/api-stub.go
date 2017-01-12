@@ -1,5 +1,8 @@
 package models
 
+type Headers map[string]string
+type JSON map[string]interface{}
+
 type APIStub struct {
 	Request  Request  `json:"request"`
 	Response Response `json:"response"`
@@ -13,11 +16,9 @@ type Request struct {
 
 type Response struct {
 	Status   int     `json:"status"`
-	BodyJSON string  `json:"bodyJSON"`
+	BodyJSON JSON    `json:"bodyJSON"`
 	Headers  Headers `json:"headers"`
 }
-
-type Headers map[string]string
 
 func APIStubTemplate() APIStub {
 	return APIStub{
@@ -30,7 +31,10 @@ func APIStubTemplate() APIStub {
 		},
 		Response{
 			200,
-			`{"name": "Adam","age": 23}`,
+			JSON{
+				"name": "Adam",
+				"age":  23,
+			},
 			Headers{
 				"Content-Type": "application/json",
 			},
