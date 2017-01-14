@@ -1,37 +1,49 @@
-## Welcome to GitHub Pages
+## MIMUS
 
-You can use the [editor on GitHub](https://github.com/lsolniczek/mimus/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Mimus is a simulator for HTTP-base APIs. It was created with mobile testing in mind, but it can be used successfully with any other typo of application.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+###Features
+---
 
-### Markdown
+- **Simulate** HTTP response 
+- **Light** CLI application
+- **Easy configuration** via JSON files
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Installation
+---
 
-```markdown
-Syntax highlighted code block
+### Setup
+---
 
-# Header 1
-## Header 2
-### Header 3
+Before you start the first simulation, you need to create your first project.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```bash
+mumus new new-project
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Inside your user directory, the application created a config folder ```mimus-config```. You will keep inside all of your API simulations. For now, there is only one folder named ```new-project```. 
 
-### Jekyll Themes
+When you open your first project simulation and you will see an example JSON file which represents single case template. Each one is a separate API call you'd like to simulate.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lsolniczek/mimus/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```json
+{"request":{"method":"GET","url":"/api-stub/template","headers":{"Content-Type":"application/json"}},"response":{"status":200,"bodyJSON":"{\"name\": \"Adam\",\"age\": 23}","headers":{"Content-Type":"application/json"}}}
+```
 
-### Support or Contact
+###Running
+---
+When you want to start simulation you have to start the server with project name:
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```bash
+mimus run new-project
+```
+Local server is running under ```localhost:8080```. When you type address ```localhost:8080/api-stub/template``` in your browser you should see a json provided under ```bodyJSON``` key of ```response``` part.
+
+Every time you add new JSON file with a new case, or you modify old one, you have to close the server and run it again.
+
+###Contact
+---
+
+If you have any questions or suggestion, I will be more that happy when you tell me about this.
+Lukasz Solniczek, l dot solniczek at gmail dot com
+
+ 
