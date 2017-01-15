@@ -44,6 +44,7 @@ Every time you add new JSON file with a new case, or you modify old one, you hav
 ---
 
 If you have any questions or suggestion, I will be more that happy when you tell me about this.
+
 Lukasz Solniczek, l dot solniczek at gmail dot com
 
  
