@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/lsolniczek/api-mock/models"
+	"github.com/lsolniczek/mimus/models"
 )
 
 type ServeHTTPImp func(w http.ResponseWriter, r *http.Request)

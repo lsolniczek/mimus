@@ -7,7 +7,7 @@ import (
 	"os/user"
 	"path/filepath"
 
-	"github.com/lsolniczek/api-mock/workmode"
+	"github.com/lsolniczek/mimus/workmode"
 )
 
 var fs = flag.NewFlagSet("api mock set", flag.ExitOnError)

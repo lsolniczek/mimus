@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 
 	"github.com/gorilla/mux"
-	"github.com/lsolniczek/api-mock/fileutil"
-	"github.com/lsolniczek/api-mock/handler"
-	"github.com/lsolniczek/api-mock/models"
+	"github.com/lsolniczek/mimus/fileutil"
+	"github.com/lsolniczek/mimus/handler"
+	"github.com/lsolniczek/mimus/models"
 )
 
 type Server AppConfig

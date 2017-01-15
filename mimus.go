@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/lsolniczek/api-mock/setup"
+	"github.com/lsolniczek/mimus/setup"
 )
 
 func main() {

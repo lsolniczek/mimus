@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/lsolniczek/api-mock/models"
+	"github.com/lsolniczek/mimus/models"
 )
 
 type Builder AppConfig
