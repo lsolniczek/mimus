@@ -17,7 +17,7 @@ func (h *serveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.ServeImp(w, r)
 }
 
-func NewServeHandler(stub models.APIStub) (http.Handler, error) {
+func NewServeHandler(stub models.APICase) http.Handler {
 	serveImp := func(w http.ResponseWriter, r *http.Request) {
 		for k, v := range stub.Response.Headers {
 			w.Header().Set(k, v)
@@ -25,5 +25,5 @@ func NewServeHandler(stub models.APIStub) (http.Handler, error) {
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(stub.Response.BodyJSON)
 	}
-	return &serveHandler{serveImp}, nil
+	return &serveHandler{serveImp}
 }
