@@ -1,6 +1,9 @@
 package fileutil
 
-import "io/ioutil"
+import (
+	"io/ioutil"
+	"path"
+)
 
 func ProjectExists(path string, name string) bool {
 	for _, pn := range projectsList(path) {
@@ -9,6 +12,10 @@ func ProjectExists(path string, name string) bool {
 		}
 	}
 	return false
+}
+
+func ValidateFileExt(fileName string, extension string) bool {
+	return path.Ext(fileName) == extension
 }
 
 func projectsList(path string) []string {

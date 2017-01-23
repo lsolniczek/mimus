@@ -34,18 +34,22 @@ func Run() workmode.WorkMode {
 	// create create config directory if doesn't exist
 	createConfDirectory(projectsFilePath)
 
-	// set AppConfig
-	config := workmode.AppConfig{
-		ProjectName:      name,
-		ProjectsFilePath: projectsFilePath,
+	// set ProjectDetails
+	projectDetails := workmode.ProjectDetails{
+		Name:     name,
+		FilePath: projectsFilePath,
 	}
 	if cmd == "new" {
-		b := workmode.Builder(config)
+		b := workmode.Builder(projectDetails)
 		return &b
 	}
 	if cmd == "run" {
-		s := workmode.Server(config)
-		return &s
+		serverConfig := workmode.ServerConfig{projectDetails}
+		apiCases, err := serverConfig.BuildAPICases()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		return workmode.NewServer(apiCases)
 	}
 	return nil
 }

@@ -3,7 +3,7 @@ package models
 type Headers map[string]string
 type JSON map[string]interface{}
 
-type APIStub struct {
+type APICase struct {
 	Request  Request  `json:"request"`
 	Response Response `json:"response"`
 }
@@ -20,8 +20,8 @@ type Response struct {
 	Headers  Headers `json:"headers"`
 }
 
-func APIStubTemplate() APIStub {
-	return APIStub{
+func APICaseTemplate() APICase {
+	return APICase{
 		Request{
 			"GET",
 			"/api-stub/template",

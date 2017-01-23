@@ -9,14 +9,10 @@ import (
 	"github.com/lsolniczek/mimus/models"
 )
 
-type Builder AppConfig
+type Builder ProjectDetails
 
 func (b *Builder) Start() error {
-	return b.createNewProject()
-}
-
-func (b *Builder) createNewProject() error {
-	newProjectPath := filepath.Join(b.ProjectsFilePath, b.ProjectName)
+	newProjectPath := filepath.Join(b.FilePath, b.Name)
 	_, err := os.Stat(newProjectPath)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -34,5 +30,5 @@ func (b *Builder) createNewProject() error {
 }
 
 func projectCaseTemplate() ([]byte, error) {
-	return json.Marshal(models.APIStubTemplate())
+	return json.Marshal(models.APICaseTemplate())
 }
